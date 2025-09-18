@@ -61,10 +61,14 @@ function getUserId($email) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogeStay - Connexion</title>
+     <!-- Favicons -->
+    <link href="LS.png" rel="icon">
+    <link href="LS.png" rel="apple-touch-icon">
+
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-    <a href="index.php" class="back-home">← Retour à l'accueil</a>
+    <a href="index.html" class="back-home">← Retour à l'accueil</a>
     
     <div class="login-container">
         <div class="login-left">
@@ -111,8 +115,7 @@ function getUserId($email) {
                 <button type="button" class="user-type-btn active" data-type="locataire">
                     👤 Locataire
                 </button>
-                <button type="button" class="user-type-btn" data-type="proprietaire">
-                    🏠 Propriétaire
+                <button href="login-proprietaire.php" class="user-type-btn"data-type="proprietaire">🏠 Propriétaire  
                 </button>
             </div>
 
@@ -122,13 +125,11 @@ function getUserId($email) {
                 <div class="form-group">
                     <label for="email">Adresse e-mail</label>
                     <input type="email" id="email" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
-                    <span class="icon">📧</span>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
                     <input type="password" id="password" name="password" required>
-                    <span class="icon" id="togglePassword">👁️</span>
                 </div>
 
                 <div class="form-options">
@@ -150,7 +151,7 @@ function getUserId($email) {
 
             <div class="signup-link">
                 Pas encore de compte ? 
-                <a href="signup.php" id="signupLink">Créer un compte</a>
+                <a href="new.compte.php" id="signupLink">Créer un compte</a>
             </div>
         </div>
     </div>
