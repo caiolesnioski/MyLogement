@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - LogeStay</title>
+    
+    <!-- Favicons -->
+    <link href="LS.png" rel="icon">
+    
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .about-content {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 4rem;
+        }
+        
+        .mission-section {
+            background: #f7fafc;
+            padding: 4rem 0;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mission-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .mission-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .team-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .member-bio {
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .values-section {
+            padding: 4rem 0;
+            background: #f7fafc;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .value-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .value-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .timeline-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: #667eea;
+        }
+        
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 45%;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 4rem 0 3rem;
+            }
+            
+            .about-text {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
+            }
+            
+            .timeline-date {
+                left: 20px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🏠 LogeStay</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#proprietaires">Propriétaires</a></li>
+                    <li><a href="index.html#locataires">Locataires</a></li>
+                    <li><a href="apropos.html" class="active">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="login-buttons">
+                <a href="login.html" class="login-btn">Se connecter</a>
+                <a href="signup.html" class="login-btn primary">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="about-container">
+            <h1>À propos de LogeStay</h1>
+            <p>Révolutionner la gestion locative avec innovation et simplicité</p>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="about-container">
+            <div class="about-text">
+                <p>LogeStay est née de la vision de simplifier la gestion locative pour tous les acteurs du marché immobilier. Notre plateforme innovante connecte propriétaires et locataires dans un écosystème transparent, efficace et sécurisé.</p>
+                
+                <p>Nous croyons que la technologie peut transformer l'expérience locative, en automatisant les processus complexes et en offrant des outils intuitifs qui permettent à chacun de se concentrer sur l'essentiel : créer des expériences de logement exceptionnelles.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="about-container">
+            <h2 class="section-title">Notre Mission</h2>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Simplifier</h3>
+                    <p>Rendre la gestion locative accessible à tous, des particuliers aux professionnels, avec des outils intuitifs et puissants.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🤝</div>
+                    <h3>Connecter</h3>
+                    <p>Créer des liens durables entre propriétaires et locataires basés sur la transparence et la confiance mutuelle.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🚀</div>
+                    <h3>Innover</h3>
+                    <p>Développer continuellement de nouvelles fonctionnalités pour anticiper les besoins évolutifs du marché locatif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="about-container">
+            <h2 class="section-title">LogeStay en chiffres</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Propriétés gérées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Utilisateurs actifs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45,000+</div>
+                    <div class="stat-label">Réservations traitées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction client</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="about-container">
+            <h2 class="section-title">Notre Équipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">👨‍💼</div>
+                    <div class="member-name">Marie Dubois</div>
+                    <div class="member-role">Fondatrice & CEO</div>
+                    <div class="member-bio">Experte en immobilier avec 15 ans d'expérience dans l'innovation technologique appliquée au secteur locatif.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👨‍💻</div>
+                    <div class="member-name">Pierre Martin</div>
+                    <div class="member-role">CTO</div>
+                    <div class="member-bio">Architecte logiciel passionné par la création de plateformes scalables et sécurisées pour l'immobilier.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👩‍💼</div>
+                    <div class="member-name">Sophie Leroy</div>
+                    <div class="member-role">Directrice Marketing</div>
+                    <div class="member-bio">Stratège marketing digital spécialisée dans l'acquisition et la fidélisation des utilisateurs B2B.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">👨‍🎨</div>
+                    <div class="member-name">Lucas Moreau</div>
+                    <div class="member-role">Lead UX Designer</div>
+                    <div class="member-bio">Designer d'expérience utilisateur focalisé sur la création d'interfaces intuitives et accessibles.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="about-container">

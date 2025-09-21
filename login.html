@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogeStay - Connexion</title>
+    <!-- Favicons -->
+    <link href="LS.png" rel="icon">
+    <link href="LS.png" rel="apple-touch-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-home:hover {
+            opacity: 0.8;
+        }
+        
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-text {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .features-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-item .icon {
+            font-size: 1.5rem;
+        }
+        
+        .login-right {
+            flex: 1;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .login-header h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-header p {
+            color: #718096;
+            margin-bottom: 2rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert.error {
+            background: #fed7d7;
+            color: #c53030;
+            border: 1px solid #feb2b2;
+        }
+        
+        .alert.success {
+            background: #c6f6d5;
+            color: #2f855a;
+            border: 1px solid #9ae6b4;
+        }
+        
+        .user-type-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: #f7fafc;
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+        
+        .user-type-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .user-type-btn.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-type-btn:not(.active):hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            color: #718096;
+        }
+        
+        .signup-link {
+            text-align: center;
+            color: #718096;
+        }
+        
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-left, .login-right {
+                padding: 2rem;
+            }
+            
+            .welcome-text {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home">← Retour à l'accueil</a>
+    
+    <div class="login-container">
+        <div class="login-left">
+            <div class="logo">🏠 LogeStay</div>
+            <h1 class="welcome-text">Bienvenue !</h1>
+            <p class="welcome-subtitle">Connectez-vous pour accéder à votre espace personnel et gérer vos réservations en toute simplicité.</p>
+            
+            <div class="features-preview">
+                <div class="feature-item">
+                    <span class="icon">📅</span>
+                    <span>Gestion complète des réservations</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">💰</span>
+                    <span>Tarification flexible et automatisée</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">📊</span>
+                    <span>Tableau de bord intuitif</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🔒</span>
+                    <span>Sécurité maximale des données</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <div class="login-header">
+                <h2>Connexion</h2>
+                <p>Accédez à votre compte LogeStay</p>
+            </div>
+
+            <div id="alertContainer" class="hidden">
+                <div class="alert error">Message d'erreur apparaîtra ici</div>
+            </div>
+            
+            <div class="user-type-selector">
+                <button type="button" class="user-type-btn active" data-type="locataire">
+                    👤 Locataire
+                </button>
+                <button type="button" class="user-type-btn" data-type="proprietaire">
+                    🏠 Propriétaire
+                </button>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <input type="hidden" name="user_type" id="userTypeInput" value="locataire">
+                
+                <div class="form-group">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        Se souvenir de moi
+                    </label>
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="login-btn" id="submitBtn">
+                    Se connecter
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>ou</span>
+            </div>
+
+            <div class="signup-link">
+                Pas encore de compte ? 
+                <a href="signup.html" id="signupLink">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Seletor de tipo de usuário
+        document.querySelectorAll('.user-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('userTypeInput').value = this.getAttribute('data-type');
+            });
+        });
+
+        // Formulário de login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const userType = document.getElementById('userTypeInput').value;
+            
+            // Validação simples
+            if (!email || !password) {
+                showAlert('Veuillez remplir tous les champs.', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showAlert('Le mot de passe doit contenir au moins 6 caractères.', 'error');
+                return;
+            }
+            
+            // Simulação de login bem-sucedido
+            showAlert('Connexion réussie! Redirection...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = `dashboard-${userType}.html`;
+            }, 2000);
+        });
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = alertContainer.querySelector('.alert');
+            
+            alert.textContent = message;
+            alert.className = `alert ${type}`;
+            alertContainer.classList.remove('hidden');
+            
+            setTimeout(() => {
+                alertContainer.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

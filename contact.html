@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - LogeStay</title>
+    
+    <!-- Favicons -->
+    <link href="LS.png" rel="icon">
+    
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .contact-item-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            min-width: 60px;
+        }
+        
+        .contact-item-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2d3748;
+        }
+        
+        .contact-item-content p {
+            margin: 0;
+            color: #4a5568;
+        }
+        
+        .map-section {
+            background: #f7fafc;
+            padding: 4rem 0;
+        }
+        
+        .map-placeholder {
+            background: #e2e8f0;
+            height: 400px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-size: 1.2rem;
+        }
+        
+        .faq-section {
+            padding: 4rem 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background: #f7fafc;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2d3748;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-hero {
+                padding: 4rem 0 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🏠 LogeStay</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#proprietaires">Propriétaires</a></li>
+                    <li><a href="index.html#locataires">Locataires</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="login-buttons">
+                <a href="login.html" class="login-btn">Se connecter</a>
+                <a href="signup.html" class="login-btn primary">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact-hero">
+        <div class="contact-container">
+            <h1>Contactez-nous</h1>
+            <p>Notre équipe est là pour vous aider avec toutes vos questions</p>
+        </div>
+    </section>
+
+    <section class="contact-content">
+        <div class="contact-container">
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h2>Envoyez-nous un message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="proprietaire">Questions propriétaire</option>
+                                <option value="locataire">Questions locataire</option>
+                                <option value="technique">Support technique</option>
+                                <option value="facturation">Facturation</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Décrivez votre demande en détail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">📨 Envoyer le message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>Informations de contact</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p>support@logestay.fr</p>
+                            <p>contact@logestay.fr</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-content">
+                            <h4>Téléphone</h4>
+                            <p>+33 1 23 45 67 89</p>
+                            <p>Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-content">
+                            <h4>Adresse</h4>
+                            <p>123 Rue de la Location</p>
+                            <p>75001 Paris, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-content">
+                            <h4>Heures d'ouverture</h4>
+                            <p>Lundi - Vendredi: 9h - 18h</p>
+                            <p>Samedi: 10h - 16h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="contact-container">
+            <h2 class="section-title">Notre localisation</h2>
+            <div class="map-placeholder">
+                📍 Carte interactive (intégration Google Maps ou OpenStreetMap)
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="contact-container">
+            <h2 class="section-title">Questions fréquentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment créer un compte propriétaire ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Cliquez sur "S'inscrire" en haut de la page, puis sélectionnez "Propriétaire". Remplissez le formulaire avec vos informations et vous pourrez commencer à enregistrer vos propriétés immédiatement.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quels sont les frais de commission ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Nous prélevons une commission de 3% sur chaque réservation confirmée. Aucun frais cachés, aucun abonnement mensuel.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment annuler une réservation ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Connectez-vous à votre compte, allez dans "Mes réservations" et cliquez sur "Annuler" pour la réservation concernée. Les conditions d'annulation dépendent de la politique du propriétaire.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Le paiement est-il sécurisé ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Oui, nous utilisons des protocoles de sécurité avancés et travaillons avec des partenaires de paiement certifiés PCI DSS pour garantir la sécurité de vos transactions.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Propriétaires</h4>
+                    <ul>
+                        <li><a href="#">Enregistrer une Propriété</a></li>
+                        <li><a href="#">Panneau de Gestion</a></li>
+                        <li><a href="#">Configurer les Tarifs</a></li>
+                        <li><a href="#">Rapports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Locataires</h4>
+                    <ul>
+                        <li><a href="#">Rechercher des Appartements</a></li>
+                        <li><a href="#">Mes Réservations</a></li>
+                        <li><a href="#">Documents</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Centre d'Aide</a></li>
+                        <li><a href="#">Comment ça Marche</a></li>
+                        <li><a href="#">Politiques</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>LogeStay</h4>
+                    <ul>
+                        <li><a href="apropos.html">À Propos</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Presse</a></li>
+                        <li><a href="#">Investisseurs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #4a5568; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2024 LogeStay. Tous droits réservés. | Système de Gestion de Réservations d'Appartements</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('span');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                } else {
+                    // Fermer toutes les autres réponses
+                    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                    document.querySelectorAll('.faq-question span').forEach(i => i.textContent = '+');
+                    
+                    answer.style.display = 'block';
+                    icon.textContent = '-';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
