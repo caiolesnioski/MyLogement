@@ -4,6 +4,18 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+// Connexion à la base de données
+$pdo = new PDO('mysql:host=localhost;dbname=location_appartements;charset=utf8mb4', 'root', '');
+
+// Récupérer les 6 premiers appartements publiés
+$stmt = $pdo->query("SELECT a.*, p.file_name FROM apartments a
+LEFT JOIN apartment_photos ap ON ap.apartment_id = a.id AND ap.is_cover = 1
+LEFT JOIN photos p ON p.id = ap.photo_id
+WHERE a.published = 1
+ORDER BY a.created_at DESC
+LIMIT 6");
+$apartments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,7 +27,7 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
-            background: #14213d; /* Bleu marine */
+            background: #14213d;
             color: #fff;
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
@@ -129,7 +141,86 @@ error_reporting(E_ALL);
             background: #fff;
             color: #14213d;
         }
-        /* Ajoute le reste du style selon tes besoins */
+        /* Section annonces */
+        .annonces-section {
+            max-width: 1200px;
+            margin: 3rem auto 0 auto;
+        }
+        .annonces-section h2 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            margin-left: 1rem;
+        }
+        .annonces {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .annonce {
+            background: rgba(26, 31, 60, 0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.15s;
+        }
+        .annonce:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .annonce img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+        }
+        .annonce-content {
+            padding: 1.2rem 1rem 1rem 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .annonce-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .annonce-city {
+            color: #e5e5e5;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .annonce-price {
+            color: #fca311;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.7rem;
+        }
+        .annonce-btn {
+            background: #fca311;
+            color: #14213d;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        .annonce-btn:hover {
+            background: #2974fa;
+            color: #fff;
+        }
+        @media (max-width: 900px) {
+            .annonces {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -138,10 +229,10 @@ error_reporting(E_ALL);
             <a href="#" class="logo">🏠 LogeStay</a>
             <nav>
                 <ul>
-                    <li><a href="proprietaires.php">Propriétaires</a></li>
-                    <li><a href="locataires.php">Locataires</a></li>
-                    <li><a href="apropos.php">À propos</a></li>
+                    <li><a href="index.php">Accueil</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                    <li><a href="login.php">Connexion</a></li>
+                    <li><a href="signup.php">Inscription</a></li>
                 </ul>
             </nav>
             <div class="login-buttons">
@@ -179,6 +270,49 @@ error_reporting(E_ALL);
             </div>
         </div>
     </section>
-    <!-- Ajoute ici tes autres sections/features si besoin -->
+
+    <!-- Section annonces récentes -->
+    <section class="annonces-section">
+        <h2>— Annonces récentes</h2>
+        <div class="annonces">
+            <?php foreach ($apartments as $ap): ?>
+                <div class="annonce">
+                    <img src="<?= !empty($ap['file_name']) ? 'assets/img/' . htmlspecialchars($ap['file_name']) : 'assets/img/default.jpg' ?>" alt="Photo logement">
+                    <div class="annonce-content">
+                        <div class="annonce-title"><?= htmlspecialchars($ap['title']) ?></div>
+                        <div class="annonce-city"><?= htmlspecialchars($ap['city']) ?> <?= htmlspecialchars($ap['country']) ?></div>
+                        <div class="annonce-price">€ <?= number_format($ap['base_price'], 2, ',', ' ') ?>/nuit</div>
+                        <button class="annonce-btn" onclick="window.location.href='annonce.php?id=<?= $ap['id'] ?>'">Voir</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
+    <footer style="background:rgba(20,33,61,0.98);margin-top:3rem;padding:2.5rem 0 1.5rem 0;">
+        <div style="display:flex;justify-content:center;gap:6rem;flex-wrap:wrap;max-width:900px;margin:0 auto;">
+            <div>
+                <h3 style="color:#fca311;margin-bottom:0.7rem;">ReserveLog</h3>
+                <p style="color:#e5e5e5;">Réservez sereinement des logements.</p>
+            </div>
+            <div>
+                <h3 style="color:#fca311;margin-bottom:0.7rem;">Navigation</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li><a href="index.php" style="color:#e5e5e5;text-decoration:none;">Accueil</a></li>
+                    <li><a href="contact.php" style="color:#e5e5e5;text-decoration:none;">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color:#fca311;margin-bottom:0.7rem;">Compte</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li><a href="login.php" style="color:#e5e5e5;text-decoration:none;">Connexion</a></li>
+                    <li><a href="signup.php" style="color:#e5e5e5;text-decoration:none;">Inscription</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;color:#e5e5e5;margin-top:2rem;font-size:0.95rem;">
+            © 2025 ReserveLog — Tous droits réservés
+        </div>
+    </footer>
 </body>
 </html>
