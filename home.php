@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -37,11 +40,11 @@ $user_email = $user_stmt->fetchColumn();
         <div class="nav">
             <span class="logo">ReserveLog</span>
             <nav class="menu">
-                <a href="home.php">Accueil</a>
-                <a href="#">Contact</a>
-                <a href="#">Favoris</a>
-                <a href="#">Réservations</a>
-                <a href="#">Profil</a>
+                <a href="index.php">Accueil</a>
+                <a href="contact.php">Contact</a>
+                <a href="favoris.php">Favoris</a>
+                <a href="reservation.php">Réservations</a>
+                <a href="profil.php">Profil</a>
                 <a href="logout.php">Déconnexion</a>
             </nav>
             <span class="user"><?= htmlspecialchars($user_email) ?></span>
