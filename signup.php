@@ -1,11 +1,11 @@
-<?php
+v<?php
 // signup.php
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Créer un compte | LogeStay</title>
+    <title>Créer un compte | MyLogement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="LS.png">
     <style>

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insérer le nouvel utilisateur
-    $stmt = $pdo->prepare('INSERT INTO users (name, email, password_hash, phone, birthdate, address, address2, zipcode, city, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt = $pdo->prepare('INSERT INTO users (name, email, password_hash, phone, birthdate, address_line1, address_line2, postal_code, city, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
     $stmt->execute([$fullname, $email, $password_hash, $phone, $birthdate, $address, $address2, $zipcode, $city, $country]);
 
     // Récupérer l’ID de l’utilisateur

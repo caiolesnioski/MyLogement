@@ -8,20 +8,63 @@ error_reporting(E_ALL);
 // Connexion à la base de données
 $pdo = new PDO('mysql:host=localhost;dbname=location_appartements;charset=utf8mb4', 'root', '');
 
-// Récupérer les 6 premiers appartements publiés
-$stmt = $pdo->query("SELECT a.*, p.file_name FROM apartments a
-LEFT JOIN apartment_photos ap ON ap.apartment_id = a.id AND ap.is_cover = 1
-LEFT JOIN photos p ON p.id = ap.photo_id
-WHERE a.published = 1
-ORDER BY a.created_at DESC
-LIMIT 6");
-$apartments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Récupérer les 6 premiers appartements publiés (remplacer par des exemples fixes)
+$apartments = [
+    [
+        'id' => 1,
+        'title' => 'Villa de luxe à Rio de Janeiro',
+        'city' => 'Rio de Janeiro',
+        'country' => 'Brésil',
+        'base_price' => 950.00,
+        'file_name' => 'rio.jpg', // imagem enviada
+    ],
+    [
+        'id' => 2,
+        'title' => 'Maison moderne à São Paulo',
+        'city' => 'São Paulo',
+        'country' => 'Brésil',
+        'base_price' => 780.00,
+        'file_name' => 'saopaulo.jpg', // imagem enviada
+    ],
+    [
+        'id' => 3,
+        'title' => 'Luxury Villa in Miami',
+        'city' => 'Miami',
+        'country' => 'États-Unis',
+        'base_price' => 1200.00,
+        'file_name' => 'miami.jpg', // imagem enviada
+    ],
+    [
+        'id' => 4,
+        'title' => 'Beach House in California',
+        'city' => 'Los Angeles',
+        'country' => 'États-Unis',
+        'base_price' => 1100.00,
+        'file_name' => 'hollywood.jpg', // imagem enviada
+    ],
+    [
+        'id' => 5,
+        'title' => 'Villa traditionnelle à Kyoto',
+        'city' => 'Kyoto',
+        'country' => 'Japon',
+        'base_price' => 990.00,
+        'file_name' => 'kyoto.jpg', // imagem enviada
+    ],
+    [
+        'id' => 6,
+        'title' => 'Appartement moderne à Tokyo',
+        'city' => 'Tokyo',
+        'country' => 'Japon',
+        'base_price' => 850.00,
+        'file_name' => 'tokyo.jpg', // imagem enviada
+    ],
+];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>LogeStay - Gestion de Réservations d'Appartements</title>
+    <title>MyLogement - Gestion de Réservations d'Appartements</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="LS.png">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -226,7 +269,7 @@ $apartments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header class="header">
         <div class="nav-container">
-            <a href="#" class="logo">🏠 LogeStay</a>
+            <a href="#" class="logo">🏠 MyLogement</a>
             <nav>
                 <ul>
                     <li><a href="index.php">Accueil</a></li>

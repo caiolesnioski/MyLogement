@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion | LogeStay</title>
+    <title>Connexion | MyLogement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="LS.png">
     <style>

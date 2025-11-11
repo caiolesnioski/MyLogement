@@ -41,7 +41,7 @@ $main_img = !empty($ap['file_name']) ? 'assets/img/' . htmlspecialchars($ap['fil
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($ap['title']) ?> | ReserveLog</title>
+    <title><?= htmlspecialchars($ap['title']) ?> | MyLogement</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <style>
         body { background: #14213d; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; }
